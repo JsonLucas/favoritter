@@ -10,66 +10,66 @@ export interface IMovie{
 export const movies: Array<IMovie> = [
 	{
 		id: 1,
-		name: 'teste',
+		name: 'Star Wars III: A Vingança dos Sith',
 		directorName: 'director name',
 		countryName: 'country name',
-		year: new Date(),
+		year: new Date('2022-12-23'),
 		image: 'https://t.ctcdn.com.br/T1R3OGdR8BomakG4ZcOaYY1zDBY=/1400x788/smart/i256255.jpeg'
 	},
 	{
 		id: 2,
-		name: 'teste',
+		name: 'Piratas do Caribe: No Fim do Mundo',
 		directorName: 'director name',
 		countryName: 'country name',
-		year: new Date(),
+		year: new Date('2022-09-23'),
 		image: 'https://t.ctcdn.com.br/T1R3OGdR8BomakG4ZcOaYY1zDBY=/1400x788/smart/i256255.jpeg'
 	},
 	{
 		id: 3,
-		name: 'teste',
+		name: 'Guardiões da Galáxia',
 		directorName: 'director name',
 		countryName: 'country name',
-		year: new Date(),
+		year: new Date('2022-01-23'),
 		image: 'https://t.ctcdn.com.br/T1R3OGdR8BomakG4ZcOaYY1zDBY=/1400x788/smart/i256255.jpeg'
 	},
 	{
 		id: 4,
-		name: 'teste',
+		name: 'Matrix Reloaded',
 		directorName: 'director name',
 		countryName: 'country name',
-		year: new Date(),
+		year: new Date('2022-05-23'),
 		image: 'https://t.ctcdn.com.br/T1R3OGdR8BomakG4ZcOaYY1zDBY=/1400x788/smart/i256255.jpeg'
 	},
 	{
 		id: 5,
-		name: 'teste',
+		name: '47 Ronin',
 		directorName: 'director name',
 		countryName: 'country name',
-		year: new Date(),
+		year: new Date('2022-02-23'),
 		image: 'https://t.ctcdn.com.br/T1R3OGdR8BomakG4ZcOaYY1zDBY=/1400x788/smart/i256255.jpeg'
 	},
 	{
 		id: 6,
-		name: 'teste',
+		name: 'Missão Impossível: Efeito Fallout',
 		directorName: 'director name',
 		countryName: 'country name',
-		year: new Date(),
+		year: new Date('2022-11-23'),
 		image: 'https://t.ctcdn.com.br/T1R3OGdR8BomakG4ZcOaYY1zDBY=/1400x788/smart/i256255.jpeg'
 	},
 	{
 		id: 7,
-		name: 'teste',
+		name: 'Batman: O Cavaleiro das Trevas',
 		directorName: 'director name',
 		countryName: 'country name',
-		year: new Date(),
+		year: new Date('2022-08-23'),
 		image: 'https://t.ctcdn.com.br/T1R3OGdR8BomakG4ZcOaYY1zDBY=/1400x788/smart/i256255.jpeg'
 	},
 	{
 		id: 8,
-		name: 'teste',
+		name: 'Invasores: Nenhum sistema Está a Salvo',
 		directorName: 'director name',
 		countryName: 'country name',
-		year: new Date(),
+		year: new Date('2022-07-23'),
 		image: 'https://t.ctcdn.com.br/T1R3OGdR8BomakG4ZcOaYY1zDBY=/1400x788/smart/i256255.jpeg'
 	},
 ];

@@ -1,56 +1,77 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 import { IMovie } from "../../types/movie";
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import { MovieModal } from "../MovieModal";
+import { IoIosStar, IoIosStarOutline } from 'react-icons/io';
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import dayjs from 'dayjs';
 
-interface Props{
-	movieData: IMovie
+interface Props {
+  movieData: IMovie;
 }
 
 export function Movie({ movieData }: Props) {
-	const [open, setOpen] = useState<boolean>(false);
+  const { signFavorite, getFavorites } = useLocalStorage();
+  const [favorite, setFavorite] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const toggleFavorite = () => {
+	signFavorite(movieData.id);
+	setFavorite(!favorite);
+  }
+  useEffect(() => {
+	const favorites = getFavorites();
+	if(favorites.find((item) => item === movieData.id)){
+		setFavorite(true);
+	}
+  }, []);
   return (
-	<>
-    <Box
-      w="200px"
-      h="200px"
-      borderRadius="10px"
-      bgColor="#333"
-      boxShadow="1px 0px 0px 1px rgba(0,0,0,0.5)"
-      display="flex"
-      flexDir="column"
-      justifyContent="center"
-      alignItems="center"
-	  float='left'
-	  mr='1%'
-	  mb='15px'
-	  cursor='pointer'
-	  transition='transform 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55), background-position 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 500ms linear'
-	  _hover={{ transform: 'scale(1.1)' }}
-	  onClick={() => setOpen(!open)}
-    >
-      <Box h="100px" w="100px">
-        <Image
-          src={movieData.image}
-          w="100%"
-          h="100%"
-          objectFit="cover"
-          borderRadius="50%"
-        />
+    <>
+      <Box
+        w="200px"
+		h='300px'
+		p='10px'
+        borderRadius="10px"
+        bgColor="#444"
+        boxShadow="0px 0px 10px 3px rgba(0,0,0,0.5)"
+        display="flex"
+        flexDir="column"
+        justifyContent="space-around"
+        alignItems="center"
+        float="left"
+        mr="1%"
+        mb="15px"
+        cursor="pointer"
+		position='relative'
+        transition="transform 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55), background-position 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 500ms linear"
+        _hover={{ transform: "scale(1.1)" }}
+      >
+		<Box w='100%' h='100%' zIndex={0} position='absolute' onClick={() => setOpen(!open)}></Box>
+		<Box w='90%' zIndex={1} onClick={toggleFavorite}>
+			{favorite && <IoIosStar color='white' size={19} style={{zIndex: 1}} />}
+			{!favorite && <IoIosStarOutline color='white' size={19} style={{zIndex: 1}} />}
+		</Box>
+        <Box h="100px" w="100px">
+          <Image
+            src={movieData.image}
+            w="100%"
+            h="100%"
+            objectFit="cover"
+            borderRadius="50%"
+          />
+        </Box>
+        <Box>
+          <Text fontWeight="bold" fontSize="18px" color="white">
+            {movieData.name}
+          </Text>
+        </Box>
+        <Box color='white' fontSize='15px'>
+          <Text>{dayjs(movieData.year).format('DD/MM/YYYY')}</Text>
+        </Box>
+        <Box color='white' fontSize='15px'>
+          <Text>{movieData.countryName}</Text>
+        </Box>
       </Box>
-	  <Box>
-		<Text fontWeight='bold' fontSize='22px' color='white'>
-			{movieData.name}
-		</Text>
-	  </Box>
-	  <Box>
-		<Text>texto 2</Text>
-	  </Box>
-	  <Box>
-		<Text>texto 3</Text>
-	  </Box>
-    </Box>
-	  <MovieModal open={open} setOpen={setOpen} />
-	  </>
+      <MovieModal open={open} setOpen={setOpen} movieDetails={movieData} />
+    </>
   );
 }

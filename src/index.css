@@ -4,3 +4,22 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+.negrito{
+	font-weight: bold;
+}
+
+.modal-buttons{
+	border: none; 
+	border-radius: 7px;
+	font-size: 15px;
+	padding: 7px;
+	width: 100px;
+	cursor: pointer;
+}
+
+.row-content{
+	display: flex;
+	width: 100%; 
+	align-items: center;
+}
