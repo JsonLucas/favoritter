@@ -40,22 +40,20 @@ export function Home() {
           });
           setFilteredMovies(sortByCountry);
           break;
-		case 'favorites':
-			const favorites = getFavorites();
-			if(favorites) {
-				const favoriteMovies: any = favorites.find((item) => {
-					let array: Array<IMovie> = [];
-					for(let i of movies){
-						if(i.id === item){
-							array.push(i);
-						}
-					}
-					return array;
-				});
-				console.log(favoriteMovies);
-				setFilteredMovies([]);
-			}
-			break;
+        case "favorites":
+          const favorites = getFavorites();
+          if (favorites) {
+            let filteredFavorites: Array<IMovie> = [];
+            for (let i in favorites) {
+              for (let j in movies) {
+                if (favorites[i] === movies[j].id) {
+                  filteredFavorites.push(movies[j]);
+                }
+              }
+            }
+            setFilteredMovies(filteredFavorites);
+          }
+          break;
         default:
           toast("Invalid filter.", { type: "error", theme: "dark" });
           break;
@@ -68,12 +66,20 @@ export function Home() {
       <Box mt="15px" ml="4%" w="90%">
         <Box pb="10px" display="flex">
           <IoMdList color="black" size={25} />
-          <select style={{ border: "none", marginLeft: "10px" }} onChange={applyFilter}>
+          <select
+            style={{ border: "none", marginLeft: "10px" }}
+            onChange={applyFilter}
+          >
             <option value="0">Filtrar por: </option>
             <option value="year">Ano</option>
             <option value="name">Nome</option>
             <option value="country">País</option>
-            <option value="favorites" disabled={getFavorites().length === 0 ? true : false}>Favoritos</option>
+            <option
+              value="favorites"
+              disabled={getFavorites().length === 0 ? true : false}
+            >
+              Favoritos
+            </option>
           </select>
         </Box>
         {filter && filteredMovies && (
