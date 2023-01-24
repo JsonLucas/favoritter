@@ -83,18 +83,18 @@ export function Home() {
           </select>
         </Box>
         {filter && filteredMovies && (
-          <>
+          <Box className='main-container'>
             {filteredMovies.map((item, index) => (
               <Movie key={index} movieData={item} />
             ))}
-          </>
+          </Box>
         )}
         {!filter && (
-          <>
+          <Box className='main-container'>
             {movies.map((item, index) => (
               <Movie key={index} movieData={item} />
             ))}
-          </>
+          </Box>
         )}
       </Box>
     </Box>
